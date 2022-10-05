@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { flushSync } from "react-dom";
 
 export const AutoBatchEventHandler = () => {
   console.log("AutoBatchEventHandler 一度のみ再レンダリングが起きている");
@@ -7,8 +8,11 @@ export const AutoBatchEventHandler = () => {
 
   const onClickUpdateButton = () => {
     console.log("state1", state1);
+    flushSync(() => {
+      setState1((state1) => state1 + 1);
+    });
+    // setState1((state1) => state1 + 1);
 
-    setState1((state1) => state1 + 1);
     console.log("state2", state2);
 
     setState2((state2) => state2 + 1);
