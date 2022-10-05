@@ -1,8 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  console.log("Appがレンダリング react18だと2回表示される");
+
   return (
     <div className="App">
       <header className="App-header">
