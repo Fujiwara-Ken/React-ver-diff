@@ -8,6 +8,10 @@ type Todo = {
 };
 
 export const AutoBatchOther = () => {
+  // setStateを3つにすると3回呼ばれる
+  console.log(
+    "AutoBatchOther set関数が二つあるので再レンダリングが起こり2回呼ばれる"
+  );
   const [todos, setTodos] = useState<Todo[] | null>(null);
   const [isFinishApi, setIsFinishApi] = useState<boolean>(false);
 
