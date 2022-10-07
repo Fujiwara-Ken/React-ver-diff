@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Avatar } from "./Avatar";
 
 export type Task = {
@@ -38,19 +38,28 @@ const filteringAssignee = (assignee: string) => {
 };
 
 export const Transition = () => {
+  const [isPending, startTransition] = useTransition();
   const [selectedAssignee, setSelectedAssignee] = useState<string>("");
   const [taskList, setTaskList] = useState<Task[]>(tasks);
   const [isShowList, setIsShowList] = useState<boolean>(false);
 
   const onClickAssignee = (assignee: string) => {
     setSelectedAssignee(assignee);
-    setTaskList(filteringAssignee(assignee));
+    startTransition(() => {
+      setTaskList(filteringAssignee(assignee));
+    });
   };
 
   return (
     <div>
       <p>transition</p>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          opacity: isPending ? 0.5 : 1,
+        }}
+      >
         <Avatar
           isSelected={selectedAssignee === member.a}
           onClick={onClickAssignee}
