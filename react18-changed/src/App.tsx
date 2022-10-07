@@ -4,6 +4,7 @@ import { AutoBatchEventHandler } from "./components/AutoBatchEventHandler";
 import { AutoBatchOther } from "./components/AutoBatchOther";
 import { ReactQuery } from "./components/ReactQuery";
 import { Transition } from "./components/Transition";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   console.log("Appがレンダリング react18だと2回表示される");
@@ -15,9 +16,11 @@ function App() {
       <hr />
       <Transition />
       <hr />
-      <Suspense fallback={<p>ローディング中</p>}>
-        <ReactQuery />
-      </Suspense>
+      <ErrorBoundary fallback={<p>エラー</p>}>
+        <Suspense fallback={<p>ローディング中</p>}>
+          <ReactQuery />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
