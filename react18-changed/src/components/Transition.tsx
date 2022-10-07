@@ -1,5 +1,6 @@
 import { useState, useTransition } from "react";
 import { Avatar } from "./Avatar";
+import { TaskList } from "./TaskList";
 
 export type Task = {
   id: number;
@@ -84,7 +85,7 @@ export const Transition = () => {
       <br />
       <br />
       <button onClick={() => setIsShowList(!isShowList)}>表示/非表示</button>
-      {/* {isShowList && <TaskList taskList={taskList} />} */}
+      {isShowList && <TaskList taskList={taskList} />}
     </div>
   );
 };
