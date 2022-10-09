@@ -14,7 +14,7 @@ export const ReactQuery = () => {
     padding: "12px",
     fontSize: "16px",
     border: "none",
-    // opacity: isPending ? 0.5 : 1,
+    opacity: isPending ? 0.5 : 1,
   };
   const albumButtonStyle = {
     ...buttonStyle,
@@ -28,7 +28,9 @@ export const ReactQuery = () => {
   };
 
   const onClickTabButton = (tab: Tabs) => {
-    setSelectedTab(tab);
+    startTransition(() => {
+      setSelectedTab(tab);
+    });
   };
 
   return (
