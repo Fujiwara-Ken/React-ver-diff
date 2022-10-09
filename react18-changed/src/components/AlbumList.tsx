@@ -1,6 +1,13 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
+// 指定時間秒待たせる関数
+const sleep = (ms: number): Promise<any> => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+};
+
 type Album = {
   userId: number;
   id: number;
@@ -8,9 +15,9 @@ type Album = {
 };
 
 const fetchAlbums = async () => {
-  const result = await axios.get<Album[]>(
-    "https://jsonplaceholder.typicode.com/albums"
-  );
+  const result = await axios
+    .get<Album[]>("https://jsonplaceholder.typicode.com/albums")
+    .then(await sleep(5000));
   return result.data;
 };
 
